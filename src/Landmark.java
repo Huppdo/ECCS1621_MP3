@@ -1,6 +1,4 @@
 /**
- Landmark.java
-
  Representation of a fort / shop for the player to interact with
 
  @since 3.23.21

@@ -1,3 +1,8 @@
+/**
+ * Class for the minigame where the player can attempt to hunt for supplementary food
+ * @author Will Klepinger
+ * Last Updated: 03/23/21 1:45PM
+ */
 public class HuntingMinigame {
 
     // Vars

@@ -1,6 +1,4 @@
 /**
- * Character.java
- *
  * This represents the person who is actually playing the game along with their family (if they have any).
  *
  * @author Wyatt Fisher
