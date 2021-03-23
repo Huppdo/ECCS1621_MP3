@@ -51,6 +51,12 @@ public class Character {
     public PlayerStatuses getStatus() { return status; }
 
     /**
+     * Returns the amount of clothing a character has.
+     * @return The int amount of clothing a character has.
+     */
+    public int getClothing() { return clothing; }
+
+    /**
      * Sets the name of the character.
      * @param name The string name that the character should be given.
      */
