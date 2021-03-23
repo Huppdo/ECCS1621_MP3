@@ -5,7 +5,7 @@
  * Last Updated: 03/23/21 1:45PM
  */
 public class Wagon {
-    char[] family;
+    Character[] family;
     int money;
     int food;
     int oxAmount;
