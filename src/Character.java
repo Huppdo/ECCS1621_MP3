@@ -22,7 +22,11 @@ public class Character {
      * @param age The age of the character.
      * @param gender The gender of the character
      */
-    public Character(String name, int age, String gender) {}
+    public Character(String name, int age, String gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
 
     /**
      * Returns the name of the character.
@@ -82,5 +86,7 @@ public class Character {
      * This method will be called when the player wants to put more clothing items on a character.
      * The int clothing amount for that character will be incremented accordingly.
      */
-    public void incrementClothing() {}
+    public void incrementClothing() {
+        clothing++;
+    }
 }
