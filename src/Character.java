@@ -1,13 +1,12 @@
-//*******************************************************************
-// Character
-//
-// Represents one individual character within the family travelling
-// on the Oregon Trail wagon
-//
-// Date Last Updated: 3.23.21
-// Author(s): Dominic Hupp
-//*******************************************************************
-
+/**
+ * Character.java
+ *
+ * This represents the person who is actually playing the game along with their family (if they have any).
+ *
+ * @author Wyatt Fisher
+ * @since 3.23.21
+ *
+ */
 public class Character {
 
     private String name;
@@ -18,94 +17,64 @@ public class Character {
     private int clothing;
 
     /**
-     * Default constructor for character class; prompts for character information
+     * Constructor of the Character class. This initializes the characters with their names, ages and genders.
+     * @param name The name of the character.
+     * @param age The age of the character.
+     * @param gender The gender of the character
      */
-    public Character() {
-        this.name = "unknown";
-        this.age = -1;
-        this.gender = "unknown";
-        this.morale = 100;
-        this.status = PlayerStatuses.HEALTHY;
-        this.clothing = 1;
-    }
+    public Character(String name, int age, String gender) {}
 
     /**
-     * Preferred constructor for character class
-     * @param name string representing the name of the character
-     * @param age integer representing the characters age, 0-100
-     * @param gender string representing the chosen gender of each character
+     * Returns the name of the character.
+     * @return The name of the character as a string.
      */
-    public Character(String name, Integer age, String gender) {
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
-        this.morale = 100;
-        this.status = PlayerStatuses.HEALTHY;
-        this.clothing = 1;
-    }
+    public String getName() { return name; }
 
     /**
-     * Method for other objects to request the name of the character
-     * @return string representation of the characters chosen name
+     * Returns the age of the character.
+     * @return The age of the character as an int.
      */
-    public String getName() {
-        return name;
-    }
+    public int getAge() { return age; }
 
     /**
-     * Method for other objects to request the age of the character
-     * @return integer representation of the characters chosen age, 0-100
+     * Returns the morale of the character.
+     * @return The morale of the character as an int.
      */
-    public int getAge() {
-        return age;
-    }
+    public int getMorale() { return morale; }
 
     /**
-     * Method for other objects to request the morale of the character
-     * @return integer representation of the characters chosen morale, 0-100
+     * Returns the current status of the character.
+     * @return The current status of the character as an int.
      */
-    public int getMorale() {
-        return morale;
-    }
+    public PlayerStatuses getStatus() { return status; }
 
     /**
-     * Method for external objects to request statuses
-     * @return PlayerStatus representation of the current player state
+     * Sets the name of the character.
+     * @param name The string name that the character should be given.
      */
-    public PlayerStatuses getStatus() {
-        return status;
-    }
+    public void setName(String name) { this.name = name; }
 
     /**
-     * Allows for the morale of the character object to be edited
-     * @param morale integer representation 0-100 of the new player morale
+     * Sets the age of the character.
+     * @param age The int age that the character should be given.
      */
-    public void setMorale(int morale) {
-        this.morale = morale;
-    }
+    public void setAge(int age) { this.age = age; }
 
     /**
-     * Allows for the status of the character object to be edited
-     * @param status PlayerStatuses representation of the new character status
+     * Sets the morale of the character
+     * @param morale The int morale that the character should be given.
      */
-    public void setStatus(PlayerStatuses status) {
-        this.status = status;
-    }
+    public void setMorale(int morale) { this.morale = morale; }
 
     /**
-     * Allows for the clothing amount of the character object to be edited
-     * @param clothing integer representation of number of clothing articles a character has
+     * Sets the status of the player.
+     * @param status The enum status that the character should be given.
      */
-    public void setClothing(int clothing) {
-        this.clothing = clothing;
-    }
+    public void setStatus(PlayerStatuses status) { this.status = status; }
 
     /**
-     * Increments the player clothing to be added on to (for example, at a shop)
-     * @param clothingIncrease the number of clothing articles to add
+     * This method will be called when the player wants to put more clothing items on a character.
+     * The int clothing amount for that character will be incremented accordingly.
      */
-    public void incrementClothic(int clothingIncrease) {
-        this.clothing += clothingIncrease;
-    }
-
+    public void incrementClothing() {}
 }

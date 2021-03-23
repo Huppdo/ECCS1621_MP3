@@ -1,19 +1,17 @@
-//*******************************************************************
-// PlayerStatuses
-//
-// Holds the enumeration for the player states to determine character health
-//
-// Date Last Updated: 3.23.21
-// Author(s): Dominic Hupp
-//*******************************************************************
-
-
+/**
+ * PlayerStatuses.java
+ *
+ * This enumeration contains the different statuses that can be set for any character in the game.
+ */
 public enum PlayerStatuses {
-    HEALTHY,
-    FATIGUED,
-    SICK_CHOLERA,
-    SICK_MALARIA,
-    SICK_SMALLPOX,
-    FREEZING,
-    DEAD
+    Healthy, Fatigued, Sick_Cholera {
+        @Override
+        public String toString() { return "Cholera"; }
+    }, Sick_Malaria {
+        @Override
+        public String toString() { return "Malaria"; }
+    }, Sick_Smallpox {
+        @Override
+        public String toString() { return "Smallpox"; }
+    }, Freezing, Dead
 }
