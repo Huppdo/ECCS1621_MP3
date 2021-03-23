@@ -1,7 +1,7 @@
 /**
- * Represents the player’s wagon.
+ * Represents the players wagon.
  *
- * @authors Will Klepinger
+ * @author Will Klepinger
  * Last Updated: 03/23/21 1:45PM
  */
 public class Wagon {
@@ -45,7 +45,7 @@ public class Wagon {
 
     /**
      * Sets players money
-     * @param money
+     * @param money amount of money to set
      */
     public void setMoney(int money) {
         this.money = money;
@@ -53,6 +53,7 @@ public class Wagon {
 
     /**
      * adds food to player's wagon
+     * @param food amount of food to append
      */
     public void addFood(int food){
         ;
@@ -91,7 +92,7 @@ public class Wagon {
 
     /**
      * retrieve ammo in wagon
-     * @returns wagon's current ammo
+     * @return wagon's current ammo
      */
     public int getAmmo() {
         return ammo;

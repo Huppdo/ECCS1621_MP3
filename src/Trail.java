@@ -1,6 +1,4 @@
 /**
- Trail.java
-
  Holds the map for the game
 
  @since 3.23.21
@@ -22,6 +20,7 @@ public class Trail {
 
     /**
      * Advances the current location on the map
+     * @param wagon the wagon of the player
      * @return the amount of damage done to the wagon
      */
     public int move(Wagon wagon) {

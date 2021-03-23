@@ -1,6 +1,4 @@
 /**
-Landmarks.java
-
 Holds enum representations of all the stops that can appear on the map
 
 @since 3.23.21

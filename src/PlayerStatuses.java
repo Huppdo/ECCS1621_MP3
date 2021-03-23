@@ -1,6 +1,4 @@
 /**
- * PlayerStatuses.java
- *
  * This enumeration contains the different statuses that can be set for any character in the game.
  */
 public enum PlayerStatuses {
