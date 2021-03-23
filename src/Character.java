@@ -1,11 +1,14 @@
 /**
- * Character class - this represents the person who is actually playing the game along with their family (if they have any).
+ * Character.java
+ *
+ * This represents the person who is actually playing the game along with their family (if they have any).
  *
  * @author Wyatt Fisher
- * @since 23 March 2021
+ * @since 3.23.21
  *
  */
 public class Character {
+
     private String name;
     private int age;
     private String gender;
