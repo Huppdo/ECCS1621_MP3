@@ -73,6 +73,12 @@ public class Character {
     public void setStatus(PlayerStatuses status) { this.status = status; }
 
     /**
+     * Sets the amount of clothing on the player.
+     * @param clothing The int amount of clothing on the player.
+     */
+    public void setClothing(int clothing) { this.clothing = clothing; }
+
+    /**
      * This method will be called when the player wants to put more clothing items on a character.
      * The int clothing amount for that character will be incremented accordingly.
      */
