@@ -46,13 +46,13 @@ public class Character {
 
     /**
      * Returns the current status of the character.
-     * @return The current status of the character as an int.
+     * @return The current status of the character as a PlayerStatuses status.
      */
     public PlayerStatuses getStatus() { return status; }
 
     /**
      * Returns the amount of clothing a character has.
-     * @return The int amount of clothing a character has.
+     * @return The amount of clothing a character has as an int.
      */
     public int getClothing() { return clothing; }
 
@@ -82,7 +82,7 @@ public class Character {
 
     /**
      * Sets the amount of clothing on the player.
-     * @param clothing The int amount of clothing on the player.
+     * @param clothing The int amount of clothing to be put on the character.
      */
     public void setClothing(int clothing) { this.clothing = clothing; }
 
