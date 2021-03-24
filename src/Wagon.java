@@ -1,38 +1,55 @@
 /**
- * Represents the players wagon.
+ * This class represents the player's wagon.
  *
  * @author Will Klepinger
- * Last Updated: 03/23/21 1:45PM
+ * @since 03/23/21 1:45PM
  */
 public class Wagon {
-    Character[] family;
-    int money;
-    int food;
-    int oxAmount;
-    int spareParts;
-    int ammo;
-    int health;
+    private Character[] family;
+    private int money;
+    private int food;
+    private int oxAmount;
+    private int spareParts;
+    private int ammo;
+    private int health;
 
     /**
      * Constructor for Wagon class
      */
     // constructor
-    public Wagon(){
-        ;
+    public Wagon(Character[] family, int money, int food, int oxAmount, int spareParts, int ammo, int health){
+        this.family = family;
+        this.money = money;
+        this.food = food;
+        this.oxAmount = oxAmount;
+        this.spareParts = spareParts;
+        this.ammo = ammo;
+        this.health = 100;
+
     }
 
     /**
-     * Updates food for player
+     * Subtracts food inventory
      */
     private void updateFood(){
-        ;
+        for (int i = 0; i < family.length; i++){
+            food--;
+        }
     }
 
     /**
-     * Check if end of trail
+     * Check if game is over
+     * @return true if the game is over, either morale is zero, everyone is dead or wagon's health is zero
+     * false otherwise
      */
-    private void checkEnd(){
-        ;
+    private Boolean checkEnd(){
+        // sum family morale
+        int moraleSum = 0;
+        for (Character character : family) {
+            moraleSum += character.getMorale();
+        }
+        // check morale, wagon health, or if everyone is dead
+        return moraleSum == 0 || health == 0 || family.length == 0;
     }
 
     /**
@@ -56,7 +73,7 @@ public class Wagon {
      * @param food amount of food to append
      */
     public void addFood(int food){
-        ;
+        this.food += food;
     }
 
     /**
@@ -64,6 +81,7 @@ public class Wagon {
      * @return speed of wagon in relation to how many oxen they have
      */
     public int getSpeed(){
+        // how is speed calculated?
         return 0;
     }
 
@@ -71,7 +89,15 @@ public class Wagon {
      * repairs wagon by setting health to 100
      */
     public void repairWagon(){
-        health = 100;
+        // if you have spare parts, subtract a part
+        if(spareParts != 0){
+            spareParts--;
+            health = 100;
+        }
+        // otherwise, tell player they don't have any parts
+        else {
+            System.out.println("You don't have any parts to fix the wagon");
+        }
     }
 
     /**
