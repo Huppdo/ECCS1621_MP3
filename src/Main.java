@@ -7,8 +7,8 @@ import java.util.Scanner;
  *
  * Contains the main method and puts all the classes together so the game actually runs.
  *
- * @author Wyatt Fisher
- * @since 3.23.21
+ * @author Wyatt Fisher, Dominic Hupp
+ * @since 3.24.21
  *
  */
 public class Main {
