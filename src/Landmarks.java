@@ -7,7 +7,12 @@ Holds enum representations of all the stops that can appear on the map
 
 public enum Landmarks {
     NONE,
-    START,
+    START {
+        @Override
+        public String toString() {
+            return "Independence City";
+        }
+    },
     INDEPENDENCE_ROCK {
 
         @Override
