@@ -1,8 +1,8 @@
 /**
  * Represents the players wagon.
  *
- * @author Will Klepinger
- * Last Updated: 03/23/21 1:45PM
+ * @author Will Klepinger, Dominic Hupp
+ * Last Updated: 03/24/21
  */
 public class Wagon {
     Character[] family;
@@ -96,5 +96,9 @@ public class Wagon {
      */
     public int getAmmo() {
         return ammo;
+    }
+
+    public void setFamily(Character[] characters) {
+        family = characters;
     }
 }

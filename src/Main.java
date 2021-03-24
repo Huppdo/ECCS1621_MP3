@@ -19,7 +19,15 @@ public class Main {
     private static boolean inputFlag = true;
     private static int numberOfFamily;
 
+    private static Wagon wagon;
+    private static Trail trail;
+
     public static void main(String[] args) {
+
+        //Create new wagon & trail
+        wagon = new Wagon();
+        trail = new Trail();
+
         // generate a random number of family members
         Random rand = new Random();
         numberOfFamily = rand.nextInt(5) + 1;
@@ -68,10 +76,37 @@ public class Main {
         userInputStr2 = keyboard.nextLine();
 
         // create a character for the player
-        Character player = new Character(userInputStr1, userInputInt, userInputStr2);
+        Character[] family = new Character[numberOfFamily];
+        family[0] = new Character(userInputStr1, userInputInt, userInputStr2);
 
         // generate array of family members
-        //for(int i = 0; i < numberOfFamily; i++) {}
+        for(int i = 1; i < numberOfFamily; i++) {
+            // get the player's name
+            keyboard.nextLine();
+            System.out.print("Please enter a new family members name: ");
+            userInputStr1 = keyboard.nextLine();
+
+            // get player's age and use try and catch to avoid program crashing
+            do {
+                System.out.print("Please enter their age: ");
+
+                try {
+                    userInputInt = keyboard.nextInt();
+                    inputFlag = false;
+                } catch (InputMismatchException e) {
+                    System.out.println("Please enter a valid number...");
+                    keyboard.nextLine();
+                    inputFlag = true;
+                }
+            } while(inputFlag);
+
+            // get player's gender
+            keyboard.nextLine();
+            System.out.print("Please enter their gender: ");
+            userInputStr2 = keyboard.nextLine();
+
+            family[numberOfFamily] = new Character(userInputStr1, userInputInt, userInputStr2);
+        }
 
         // display details of the player's family members
 
