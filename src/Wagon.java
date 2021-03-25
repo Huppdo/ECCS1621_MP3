@@ -32,8 +32,10 @@ public class Wagon {
      * Subtracts food inventory
      */
     private void updateFood(){
-        for (int i = 0; i < family.length; i++){
-            food--;
+        for (Character character : family) {
+            if (character.getStatus() != PlayerStatuses.DEAD) {
+                food--;
+            }
         }
     }
 
