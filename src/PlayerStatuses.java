@@ -8,8 +8,14 @@
  *
  */
 public enum PlayerStatuses {
-    HEALTHY,
-    FATIGUED,
+    HEALTHY {
+        @Override
+        public String toString() { return "Healthy"; }
+    },
+    FATIGUED {
+        @Override
+        public String toString() { return "Fatigued"; }
+    },
     SICK_CHOLERA {
         @Override
         public String toString() { return "Cholera"; }
@@ -22,6 +28,12 @@ public enum PlayerStatuses {
         @Override
         public String toString() { return "Smallpox"; }
     },
-    FREEZING,
-    DEAD
+    FREEZING {
+        @Override
+        public String toString() { return "Freezing"; }
+    },
+    DEAD {
+        @Override
+        public String toString() { return "Dead"; }
+    }
 }
