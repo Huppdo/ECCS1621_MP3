@@ -108,6 +108,8 @@ public class Main {
             family[numberOfFamily] = new Character(userInputStr1, userInputInt, userInputStr2);
         }
 
+        wagon.setFamily(family);
+
         // display details of the player's family members
 
         // begin the game

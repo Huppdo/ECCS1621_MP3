@@ -35,5 +35,7 @@ public class Landmark {
     public void openShop(Wagon wagon) {
         int currentFunds = wagon.getMoney();
 
+
+
     }
 }

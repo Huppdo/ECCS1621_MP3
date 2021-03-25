@@ -36,11 +36,11 @@ public class Trail {
     }
 
     /**
-     * Adds between 3-28 blank tiles on the map
+     * Adds between 3-15 blank tiles on the map
      * @param randGen an instance of the java.util.Random class
      */
     private void appendBlank(java.util.Random randGen) {
-        for (int i = 0; i < randGen.nextInt(25) + 3; i++) {
+        for (int i = 0; i < randGen.nextInt(12) + 3; i++) {
             trailMap.add(Landmarks.NONE);
             if (randGen.nextInt(50) == 25) {
                 trailMap.add(Landmarks.RIVER);

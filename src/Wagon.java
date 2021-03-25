@@ -25,7 +25,6 @@ public class Wagon {
         this.spareParts = spareParts;
         this.ammo = ammo;
         this.health = 100;
-
     }
 
     /**
@@ -50,8 +49,16 @@ public class Wagon {
         for (Character character : family) {
             moraleSum += character.getMorale();
         }
+
+        boolean allDead = true;
+        for (Character character : family) {
+            if (character.getStatus() != PlayerStatuses.DEAD) {
+                allDead = false;
+                break;
+            }
+        }
         // check morale, wagon health, or if everyone is dead
-        return moraleSum == 0 || health == 0 || family.length == 0;
+        return moraleSum == 0 || health == 0 || allDead;
     }
 
     /**
