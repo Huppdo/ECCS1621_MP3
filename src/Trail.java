@@ -68,6 +68,12 @@ public class Trail {
         //Gets the number of ox
         int movement = wagon.getSpeed();
 
+        movement -= wagon.getFatigued();
+
+        if (movement < 1) {
+            movement = 1;
+        }
+
         //Stops the user at specific locations
         for (int i = 1; i <= movement; i++) {
             int location = currentLocation + i;

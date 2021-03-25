@@ -46,7 +46,6 @@ public class HuntingMinigame {
         // if user input matches direction, return true and subtract animalsRemaining
         if(input == animalLocation){
             animalsRemaining--;
-            System.out.println("You got one! +4 food");
             return true;
         }
         else{

@@ -77,6 +77,67 @@ public class Wagon {
         spareParts += parts;
     }
 
+    public void endDay(java.util.Random rand, Weather weather){
+        for (int i = 0; i < family.length; i++) {
+            if (weather == Weather.SUNNY && family[i].getStatus() == PlayerStatuses.FREEZING) {
+                family[i].setStatus(PlayerStatuses.HEALTHY);
+                System.out.println("" + family[i].getName() + " warmed back up from the sun.");
+                continue;
+            }
+
+            if (family[i].getStatus() != PlayerStatuses.HEALTHY && family[i].getStatus() != PlayerStatuses.DEAD && family[i].getStatus() != PlayerStatuses.FATIGUED) {
+                int randomChance = rand.nextInt(10);
+
+                if (randomChance < 3) {
+                    family[i].setStatus(PlayerStatuses.DEAD);
+                    System.out.println("" + family[i].getName() + " died from their ailments.");
+                } else if (randomChance < 7) {
+                    family[i].setStatus(PlayerStatuses.HEALTHY);
+                    System.out.println("" + family[i].getName() + " recovered from their ailments.");
+                }
+
+                continue;
+            }
+
+            if ((weather == Weather.RAINING && family[i].getClothing() < 3) || (weather == Weather.SNOWY && family[i].getClothing() < 4)) {
+                family[i].setStatus(PlayerStatuses.FREEZING);
+                System.out.println("" + family[i].getName() + " is slowly dying from the cold.");
+                continue;
+            }
+            int sickChance = rand.nextInt(25);
+            if (sickChance == 10) {
+                int type = rand.nextInt(3);
+                switch (type){
+                    case 0:
+                        family[i].setStatus(PlayerStatuses.SICK_CHOLERA);
+                        break;
+                    case 1:
+                        family[i].setStatus(PlayerStatuses.SICK_MALARIA);
+                        break;
+                    case 2:
+                        family[i].setStatus(PlayerStatuses.SICK_SMALLPOX);
+                }
+                System.out.println("" + family[i].getName() + " got sick while travelling.");
+                continue;
+            }
+            if (family[i].getMorale() < 50) {
+                family[i].setStatus(PlayerStatuses.FATIGUED);
+                System.out.println("" + family[i].getName() + " has become sluggish from a lack of morale (-1 speed)");
+            }
+        }
+    }
+
+    public int getFatigued(){
+        int fatigued = 0;
+        for (Character character : family) {
+            if (character.getStatus() == PlayerStatuses.FATIGUED) {
+                fatigued += 1;
+            }
+        }
+
+        return fatigued;
+    }
+
     /**
      * Sets players money
      * @param money amount of money to set

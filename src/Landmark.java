@@ -43,14 +43,22 @@ public class Landmark {
         char ans = 'Z';
 
         do {
+
             int currentFunds = wagon.getMoney();
+
+            if (currentFunds == 0) {
+                System.out.println("You're out of money, so no more shopping.");
+                break;
+            }
+
             System.out.println("---------------");
             System.out.println("You currently have " + currentFunds + " dollars.");
             System.out.println("Prices:");
             System.out.println("Ox (+1): " + oxPrice + ", Ammo (+10): " + ammoPrice);
             System.out.println("Parts (+1): " + partsPrice + ", Food (+6): " + foodPrice);
+            System.out.println("Clothes (+1): " + clothesPrice);
             System.out.println("What would you like to purchase?");
-            System.out.println("(O)x, (A)mmo, (P)arts, (F)ood or (Q)uit shopping");
+            System.out.println("(O)x, (A)mmo, (P)arts, (F)ood, (C)lothes or (Q)uit shopping");
 
             String answer = keyboard.nextLine();
 
@@ -90,6 +98,32 @@ public class Landmark {
                         if (currentFunds >= foodPrice) {
                             wagon.addFood(6);
                             wagon.setMoney(wagon.getMoney() - foodPrice);
+                        } else {
+                            throw new Exception();
+                        }
+                        break;
+                    case 'C':
+                        if (currentFunds >= clothesPrice) {
+                            Character[] tempFamily = wagon.getFamily();
+                            int person = 100;
+                            System.out.println("Who would you like to assign the clothes to?");
+                            for (int i = 0; i < tempFamily.length; i++) {
+                                System.out.println("" + (i+1) + ") " + tempFamily[i].getName() + " - clothes: " + tempFamily[i].getClothing());
+                            }
+
+                            do {
+                                System.out.print("Enter the number for the person to add clothes to. >> ");
+                                try {
+                                    person = keyboard.nextInt() - 1;
+                                } catch (Exception ex) {
+                                    person = 100;
+                                    keyboard.nextLine();
+                                }
+                            } while (person > tempFamily.length-1 || person < 0);
+
+                            tempFamily[person].setClothing(tempFamily[person].getClothing() + 1);
+                            wagon.setFamily(tempFamily);
+                            wagon.setMoney(wagon.getMoney() - clothesPrice);
                         } else {
                             throw new Exception();
                         }

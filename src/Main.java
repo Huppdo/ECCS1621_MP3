@@ -32,7 +32,6 @@ public class Main {
         // generate a random number of family members
         Random rand = new Random();
         numberOfFamily = rand.nextInt(5) + 1;
-        numberOfFamily = 1;
 
         day = 0;
 
@@ -149,8 +148,9 @@ public class Main {
 
                             Character[] tempFamily = wagon.getFamily();
                             if (success) {
-                                wagon.addFood(4);
+                                wagon.addFood(3 * numberOfFamily);
                                 wagon.updateMorale(10, true, rand);
+                                System.out.println("You got one! " + (3 * numberOfFamily) + " food");
                             } else {
                                 wagon.updateMorale(10, false, rand);
                             }
@@ -164,7 +164,7 @@ public class Main {
                     case 'S':
                         System.out.println("---------------");
                         for (Character person : wagon.getFamily()) {
-                            System.out.println(person.getName() + " - status: " + person.getStatus().toString() + ", morale: " + person.getMorale());
+                            System.out.println(person.getName() + " - status: " + person.getStatus().toString() + ", morale: " + person.getMorale() + ", clothes: " + person.getClothing());
                         }
                         System.out.println("Wagon - ammo: " + wagon.getAmmo() + ", food: " + wagon.getFood() + ", health: " + wagon.getHealth());
                         break;
@@ -245,11 +245,10 @@ public class Main {
             }
 
             wagon.updateFood();
+            wagon.endDay(rand, trail.getWeather());
             int damage = trail.move(wagon);
             wagon.damageWagon(damage);
             day += 1;
-
-
         }
 
 
