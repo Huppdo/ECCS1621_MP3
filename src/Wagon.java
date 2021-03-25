@@ -79,6 +79,11 @@ public class Wagon {
 
     public void endDay(java.util.Random rand, Weather weather){
         for (int i = 0; i < family.length; i++) {
+
+            if (family[i].getStatus() == PlayerStatuses.DEAD) {
+                continue;
+            }
+
             if (weather == Weather.SUNNY && family[i].getStatus() == PlayerStatuses.FREEZING) {
                 family[i].setStatus(PlayerStatuses.HEALTHY);
                 System.out.println("" + family[i].getName() + " warmed back up from the sun.");
