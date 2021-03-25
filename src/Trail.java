@@ -18,6 +18,7 @@ public class Trail {
     public Trail() {
         //Get a random number generator
         randGen = new java.util.Random();
+        trailMap = new java.util.ArrayList<Landmarks>();
 
         //Add start to map
         trailMap.add(Landmarks.START);
