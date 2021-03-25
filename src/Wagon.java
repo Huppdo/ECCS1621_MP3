@@ -5,13 +5,13 @@
  * @since 03/23/21 1:45PM
  */
 public class Wagon {
-    Character[] family;
-    int money;
-    int food;
-    int oxAmount;
-    int spareParts;
-    int ammo;
-    int health;
+    private Character[] family;
+    private int money;
+    private int food;
+    private int oxAmount;
+    private int spareParts;
+    private int ammo;
+    private int health = 100;
 
     /**
      * Constructor for Wagon class
@@ -24,7 +24,6 @@ public class Wagon {
         this.oxAmount = oxAmount;
         this.spareParts = spareParts;
         this.ammo = ammo;
-        this.health = 100;
 
     }
 
@@ -32,10 +31,8 @@ public class Wagon {
      * Subtracts food inventory
      */
     private void updateFood(){
-        for (Character character : family) {
-            if (character.getStatus() != PlayerStatuses.DEAD) {
-                food--;
-            }
+        for (int i = 0; i < family.length; i++){
+            food--;
         }
     }
 
@@ -124,9 +121,5 @@ public class Wagon {
      */
     public int getAmmo() {
         return ammo;
-    }
-
-    public void setFamily(Character[] characters) {
-        family = characters;
     }
 }
