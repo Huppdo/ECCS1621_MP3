@@ -19,6 +19,7 @@ public class Trail {
         //Get a random number generator
         randGen = new java.util.Random();
         trailMap = new java.util.ArrayList<Landmarks>();
+        weather = Weather.SUNNY;
 
         //Add start to map
         trailMap.add(Landmarks.START);
@@ -37,13 +38,13 @@ public class Trail {
     }
 
     /**
-     * Adds between 3-15 blank tiles on the map
+     * Adds between 8-20 blank tiles on the map
      * @param randGen an instance of the java.util.Random class
      */
     private void appendBlank(java.util.Random randGen) {
-        for (int i = 0; i < randGen.nextInt(12) + 3; i++) {
+        for (int i = 0; i < randGen.nextInt(12) + 8; i++) {
             trailMap.add(Landmarks.NONE);
-            if (randGen.nextInt(50) == 25) {
+            if (randGen.nextInt(12) == 6) {
                 trailMap.add(Landmarks.RIVER);
             }
         }
@@ -69,7 +70,8 @@ public class Trail {
 
         //Stops the user at specific locations
         for (int i = 1; i <= movement; i++) {
-            if (trailMap.get(currentLocation + i) != Landmarks.NONE) {
+            int location = currentLocation + i;
+            if (trailMap.get(location) != Landmarks.NONE) {
                 movement = i;
                 break;
             }
@@ -100,7 +102,28 @@ public class Trail {
 
         currentLocation += movement;
 
-        //Returns the damage done (movement * 2)
-        return movement * 2;
+        int damageMultiplier = 2;
+        switch (weather) {
+            case DUSTY:
+                damageMultiplier = 4;
+                break;
+            case SNOWY:
+                damageMultiplier = 8;
+                break;
+            case RAINING:
+                damageMultiplier = 6;
+                break;
+        }
+
+        //Returns the damage done (movement * multiplier)
+        return movement * damageMultiplier;
+    }
+
+    /**
+     * gets the current weather conditions on the trail
+     * @return current weather conditions
+     */
+    public Weather getWeather() {
+        return weather;
     }
 }

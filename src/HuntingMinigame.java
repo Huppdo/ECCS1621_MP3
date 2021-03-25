@@ -33,23 +33,25 @@ public class HuntingMinigame {
             animalsRemaining++;
             return false;
         }
+
         // array of possible outcomes
         char outcomes[] = {'W', 'S','A', 'D'};
         // pick one direction randomly
         int randIndex = random.nextInt(3);
         char animalLocation = outcomes[randIndex];
-        System.out.println("Pick a direction with W,S,A,D to shoot.");
+        System.out.print("Pick a direction with W,S,A,D to shoot. >> ");
 
         char input = sc.next().charAt(0);
         input = java.lang.Character.toUpperCase(input);
         // if user input matches direction, return true and subtract animalsRemaining
         if(input == animalLocation){
             animalsRemaining--;
-            System.out.println("You got one!");
+            System.out.println("You got one! +4 food");
             return true;
         }
         else{
             // return false otherwise
+            System.out.println("You missed.");
             return false;
         }
     }

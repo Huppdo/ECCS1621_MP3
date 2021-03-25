@@ -30,7 +30,7 @@ public class Wagon {
     /**
      * Subtracts food inventory
      */
-    private void updateFood(){
+    public void updateFood(){
         for (Character character : family) {
             if (character.getStatus() != PlayerStatuses.DEAD) {
                 food--;
@@ -43,7 +43,7 @@ public class Wagon {
      * @return true if the game is over, either morale is zero, everyone is dead or wagon's health is zero
      * false otherwise
      */
-    private Boolean checkEnd(){
+    public Boolean checkEnd(){
         // sum family morale
         int moraleSum = 0;
         for (Character character : family) {
@@ -58,7 +58,7 @@ public class Wagon {
             }
         }
         // check morale, wagon health, or if everyone is dead
-        return moraleSum == 0 || health == 0 || allDead;
+        return moraleSum == 0 || health <= 0 || allDead || food <= 0;
     }
 
     /**
@@ -67,6 +67,14 @@ public class Wagon {
      */
     public int getMoney() {
         return money;
+    }
+
+    /**
+     * increment parts for store
+     * @param parts # to add
+     */
+    public void addParts(int parts) {
+        spareParts += parts;
     }
 
     /**
@@ -86,12 +94,43 @@ public class Wagon {
     }
 
     /**
+     * Returns the wagon health
+     * @return health
+     */
+    public int getHealth() {
+        return this.health;
+    }
+
+    /**
+     *
+     */
+    public void damageWagon(int damage) {
+        this.health -= damage;
+    }
+
+    /**
+     * Returns the family
+     * @return players family
+     */
+    public Character[] getFamily() {
+        return family;
+    }
+
+    /**
+     * Returns the players food
+     * @return wagon food
+     */
+    public int getFood() {
+        return food;
+    }
+
+    /**
      *
      * @return speed of wagon in relation to how many oxen they have
      */
     public int getSpeed(){
         // how is speed calculated?
-        return 0;
+        return oxAmount;
     }
 
     /**
@@ -102,6 +141,7 @@ public class Wagon {
         if(spareParts != 0){
             spareParts--;
             health = 100;
+            System.out.println("The wagon has been repaired!");
         }
         // otherwise, tell player they don't have any parts
         else {
@@ -135,5 +175,27 @@ public class Wagon {
 
     public void setFamily(Character[] characters) {
         family = characters;
+    }
+
+    /**
+     * Number of ox to add
+     * @param ox oxen to add
+     */
+    public void addOx(int ox) {
+        oxAmount += ox;
+    }
+
+    /**
+     * Current amount of spare parts
+     * @return # of spare parts
+     */
+    public int getParts(){
+        return spareParts;
+    }
+
+    public void updateMorale(int maxChange, boolean addMorale, java.util.Random rand) {
+        for (int i = 0; i < family.length; i++) {
+            family[i].setMorale(family[i].getMorale() - (rand.nextInt(maxChange) * (addMorale ? 1 : -1)));
+        }
     }
 }

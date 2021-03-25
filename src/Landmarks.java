@@ -38,7 +38,7 @@ public enum Landmarks {
 
         @Override
         public String toString() {
-            return "Fort BOISE";
+            return "Fort Boise";
         }
     },
     OREGON_CITY {

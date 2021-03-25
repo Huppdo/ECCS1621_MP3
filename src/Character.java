@@ -24,6 +24,10 @@ public class Character {
         this.name = name;
         this.age = age;
         this.gender = gender;
+
+        this.morale = 100;
+        this.status = PlayerStatuses.HEALTHY;
+        this.clothing = 2;
     }
 
     /**
