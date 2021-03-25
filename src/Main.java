@@ -121,7 +121,6 @@ public class Main {
 
         // display details of the player's family members
 
-
         // begin the game
         while (!wagon.checkEnd()) {
             Landmarks currentType = trail.getLocation();
