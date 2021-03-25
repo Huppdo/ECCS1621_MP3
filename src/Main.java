@@ -24,13 +24,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //Create new wagon & trail
-        wagon = new Wagon();
-        trail = new Trail();
-
         // generate a random number of family members
         Random rand = new Random();
         numberOfFamily = rand.nextInt(5) + 1;
+
+        //Create new wagon & trail
+        wagon = new Wagon(new Character[0], 800*numberOfFamily,10*numberOfFamily, 1, 1, 0, 100);
+        trail = new Trail();
 
         // display welcome messages and allow the user to start the game
         System.out.println("Welcome to the Oregon Trail simulation game!");

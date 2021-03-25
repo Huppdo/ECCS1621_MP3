@@ -49,6 +49,14 @@ public class Trail {
     }
 
     /**
+     * Gets the current location of the
+     * @returns a Landmarks enum that represents the current location
+     */
+    public Landmarks getLocation() {
+        return trailMap.get(currentLocation);
+    }
+
+    /**
      * Advances the current location on the map
      * @param wagon the wagon of the player
      * @return the amount of damage done to the wagon

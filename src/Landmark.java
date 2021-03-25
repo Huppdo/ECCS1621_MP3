@@ -1,7 +1,7 @@
 /**
  Representation of a fort / shop for the player to interact with
 
- @since 3.23.21
+ @since 3.24.21
  @author Dominic Hupp
  */
 
@@ -13,12 +13,19 @@ public class Landmark {
     private int clothesPrice;
     private int ammoPrice;
     private int partsPrice;
+    private final static int PURCHASE_RANGE = 6;
 
     /**
      * Initializes the landmark object with random prices to begin
      */
     public Landmark() {
-        //Code here
+        java.util.Random randGen = new java.util.Random();
+
+        oxPrice = (randGen.nextInt(PURCHASE_RANGE)+1) * 100;
+        foodPrice = (randGen.nextInt(PURCHASE_RANGE)+1) * 100;
+        clothesPrice = (randGen.nextInt(PURCHASE_RANGE)+1) * 100;
+        ammoPrice = (randGen.nextInt(PURCHASE_RANGE)+1) * 100;
+        partsPrice = (randGen.nextInt(PURCHASE_RANGE)+1) * 100;
     }
 
     /**
@@ -26,6 +33,7 @@ public class Landmark {
      * @param wagon the wagon holding the family and goods
      */
     public void openShop(Wagon wagon) {
-        //Code here
+        int currentFunds = wagon.getMoney();
+
     }
 }
