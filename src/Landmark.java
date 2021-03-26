@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -134,5 +136,41 @@ public class Landmark {
             }
 
         } while (ans != 'Q');
+    }
+
+    /**
+     * Contains the functionality for the trivia minigame that happens at each landmark.
+     * @param wagon The player's wagon.
+     * @param keyboard The keyboard scanner object to read input from keyboard.
+     * @param trivia ArrayList of trivia questions.
+     * @param choices ArrayList of corresponding choices to the trivia questions.
+     * @param answers The correct answer.
+     * @param rand Random object for random trivia question generation.
+     */
+    public void trivia(Wagon wagon, Scanner keyboard, ArrayList<String> trivia, ArrayList<String[]> choices,
+                       ArrayList<String> answers, Random rand) {
+        System.out.println("------------------------------");
+        System.out.println("Trail trivia question! Answer correctly to win 200 dollars for each family member still alive!");
+
+        // count number of living family members
+        int livingFamily = 0;
+        Character[] tempFamily = wagon.getFamily();
+        for (int i = 1; i < tempFamily.length; i++) {
+            if (tempFamily[i].getStatus() != PlayerStatuses.DEAD) { livingFamily++; }
+        }
+
+        // display random trivia question and the corresponding answer choices
+        int num = rand.nextInt(trivia.size());
+        System.out.println(trivia.get(num));
+        for (String str : choices.get(num)) { System.out.println(str); }
+
+        // ask user to select an answer
+        System.out.print("Which of those is the correct answer? >> ");
+        if (answers.get(num).charAt(0) == keyboard.nextLine().toUpperCase().charAt(0)) {
+            System.out.println("Congratulations! You win " + 200 * livingFamily + " dollars!");
+            wagon.setMoney(wagon.getMoney() + (200 * livingFamily));
+        } else { System.out.println("Sorry, that is incorrect. No money for you!");}
+
+        System.out.println("------------------------------");
     }
 }

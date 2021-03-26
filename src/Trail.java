@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  Holds the map for the game
 
@@ -18,7 +20,7 @@ public class Trail {
     public Trail() {
         //Get a random number generator
         randGen = new java.util.Random();
-        trailMap = new java.util.ArrayList<Landmarks>();
+        trailMap = new java.util.ArrayList<>();
         weather = Weather.SUNNY;
 
         //Add start to map
@@ -52,7 +54,7 @@ public class Trail {
 
     /**
      * Gets the current location of the
-     * @returns a Landmarks enum that represents the current location
+     * @return a Landmarks enum that represents the current location
      */
     public Landmarks getLocation() {
         return trailMap.get(currentLocation);
@@ -131,5 +133,20 @@ public class Trail {
      */
     public Weather getWeather() {
         return weather;
+    }
+
+    /**
+     * Prints out a random trail fact to the console.
+     * @param facts The ArrayList containing facts about the trail.
+     */
+    public void trailTidbit(ArrayList<String> facts) {
+        if (facts.size() > 0) {
+            System.out.print("Trail Tidbit! Did you know: ");
+            System.out.println(facts.get(randGen.nextInt(facts.size())));
+        } else {
+            System.out.println("Sorry, we're all out of Trail Tidbits!");
+        }
+
+        System.out.println("------------------------------");
     }
 }
