@@ -146,43 +146,47 @@ public class Main {
             family[i] = new Character(userInputStr1, userInputInt, userInputStr2);
         }
 
+        // add family to wagon
         wagon.setFamily(family);
-
-        // display details of the player's family members
 
         // begin the game
         while (!wagon.checkEnd()) {
+            // get type of landmark
             Landmarks currentType = trail.getLocation();
-
+            // display count of day and day's weather and display fact about Oregon Trail
             System.out.println("------------------------------");
             System.out.println("Day " + day + ": the weather is currently " + trail.getWeather().toString());
             trail.trailTidbit(factsAL);
 
             if (currentType == Landmarks.NONE) {
 
+                // give user choice of action
                 System.out.print("Would you like to go (H)unting, (S)ee your party's stats, (R)epair your wagon, or (C)ontinue? >> ");
                 String ans = keyboard.nextLine();
 
                 char dayAnswer;
-
+                // make player continue if they leave a blank answer, otherwise use their input
                 if (ans.isBlank()) {
                     dayAnswer = 'C';
                 } else {
                     dayAnswer = ans.toUpperCase(Locale.ROOT).charAt(0);
                 }
-
+                // switch case to handle what user picked from menu
                 switch (dayAnswer) {
                     case 'H':
                         if (wagon.getAmmo() > 0) {
+                            // subtract ammo for every time they hunt
                             wagon.addAmmo(-1);
                             boolean success = huntingMinigame.playGame();
-
                             Character[] tempFamily = wagon.getFamily();
+                            // if user kills an animal,
                             if (success) {
+                                // give the family food and improve morale
                                 wagon.addFood(3 * numberOfFamily);
                                 wagon.updateMorale(10, true, rand);
                                 System.out.println("You got one! " + (3 * numberOfFamily) + " food");
                             } else {
+                                // if the user misses, decrease morale
                                 wagon.updateMorale(10, false, rand);
                             }
                         } else {
@@ -193,6 +197,7 @@ public class Main {
                         wagon.repairWagon();
                         break;
                     case 'S':
+                        // display family and wagon stats
                         System.out.println("---------------");
                         for (Character person : wagon.getFamily()) {
                             System.out.println(person.getName() + " - status: " + person.getStatus().toString() + ", morale: " + person.getMorale() + ", clothes: " + person.getClothing());
@@ -204,12 +209,15 @@ public class Main {
                 }
 
             } else if (currentType == Landmarks.RIVER) {
+                // if the player reaches a river, give them an option to wait a day
+                // or try to cross the river
                 System.out.println("Oh no! You've reached a river.");
                 System.out.print("Would you like to try and (F)ord the river or (W)ait for a ferry? >> ");
                 String ans = keyboard.nextLine();
 
                 char dayAnswer;
 
+                // no input handling, force user to cross if blank
                 if (ans.isBlank()) {
                     dayAnswer = 'F';
                 } else {
@@ -217,26 +225,32 @@ public class Main {
                 }
 
                 if (dayAnswer == 'F') {
+                    // give user 50/50 chance of crossing successfully
                     boolean risk = rand.nextBoolean();
-
+                    // if they fail,
                     if (risk) {
+                        // randomly impose an unfortunate scenario:
                         int action = rand.nextInt(5);
                         switch (action) {
                             case 0:
+                                // their wagon takes a random amount of damage
                                 int wagonDamage = rand.nextInt(20) + 1;
                                 wagon.damageWagon(wagonDamage);
                                 System.out.println("You hit a rock and lost " + wagonDamage + " wagon health.");
                                 break;
                             case 1:
+                                // they lose a random amount of food
                                 int foodLoss = rand.nextInt(6) + 1;
                                 wagon.addFood(foodLoss * -1);
                                 System.out.println("" + foodLoss + " items of food got waterlogged and had to be left behind.");
                                 break;
                             case 2:
+                                // they lose morale because of wet clothing
                                 wagon.updateMorale(10, false, rand);
                                 System.out.println("Your family is upset by their soaking wet clothes.");
                                 break;
                             case 3:
+                                // if they have more than 1 ox, drown an ox
                                 if (wagon.getSpeed() > 1) {
                                     wagon.addOx(-1);
                                     System.out.println("One of your oxen drowned in the river.");
@@ -245,6 +259,7 @@ public class Main {
                                 }
                                 break;
                             case 4:
+                                // or a family member dies
                                 Character[] tempFamily = wagon.getFamily();
                                 for (int i = 1; i < tempFamily.length; i++) {
                                     int dieChance = rand.nextInt(3);
@@ -256,18 +271,23 @@ public class Main {
                                 wagon.setFamily(tempFamily);
                         }
                     }
+                    // otherwise they make it across the river successfully
                 } else {
                     day += 1;
                     wagon.updateFood();
                     wagon.updateMorale(4,false,rand);
                 }
+                // display winning message that they have made it to the end of the trail
             } else if (currentType == Landmarks.OREGON_CITY) {
                 System.out.println("Congrats! You've made it to " + currentType.toString() + ".");
                 break;
             } else {
+                // message when the player starts the game
                 if (currentType == Landmarks.START) {
                     System.out.println("Welcome to " + currentType.toString() + "! You'll be leaving shortly.");
                 } else {
+                    // message when the player makes it to a new landmark
+                    // and start a trivia game with player
                     System.out.println("You have made it to: " + currentType.toString() + ".");
                     landmark.trivia(wagon, keyboard, triviaQuestions, answerChoices, correctAnswers, rand);
                 }
