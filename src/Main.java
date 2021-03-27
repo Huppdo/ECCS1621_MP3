@@ -304,6 +304,13 @@ public class Main {
             day += 1;
         }
 
+        if (wagon.checkEnd()) {
+            System.out.println("Your family failed to make it to the end of the Oregon Trail");
+            System.out.println("Better luck next time!");
+        } else {
+            System.out.println("Your family made it to the end of the Oregon Trail");
+            System.out.println("You'll enjoy a happy & prosperous life here!");
+        }
 
     }
 }
